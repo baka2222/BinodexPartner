@@ -1,0 +1,5 @@
+<!doctype html><html lang="ru"><meta charset="utf-8"><title>Пополнение Binodex</title><body style="margin:0;background:#000"><iframe id="pay" src="{{ platform }}/embed/pay?mode=deposit&client_id={{ client_id }}&lang=ru&theme=dark" allow="payment *" style="width:100%;height:720px;border:0;background:transparent" allowtransparency></iframe><script>
+const platform='{{ platform }}', frame=document.getElementById('pay'), session='{{ session }}';
+window.addEventListener('message', e => { if(e.origin!==platform || e.source!==frame.contentWindow) return; if(e.data?.type==='binodex-embed:ready') frame.contentWindow.postMessage({type:'binodex-embed:init',session},platform); if(e.data?.type==='binodex-embed:reauth-required') location.reload(); });
+</script></body></html>
+
